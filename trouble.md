@@ -68,6 +68,8 @@ In this phase, we check the network hardware, specifically network cables and po
     - `UP`: ok, the interface is connected
     - `NO-CARRIER`: no signal on this interface
 
+- 
+
 # Network layer
 
 The network layer is responsible for being able to communicate with other hosts on the network. In order to be able to communicate, each host should have *three* settings configured correctly:
@@ -192,6 +194,12 @@ Check the output for the following items:
     - The value should be one listed by `firewall-cmd --get-services`.
     - Remark that the service name for `firewalld` is *not necessarily* equal to the service name for `systemd`. E.g. BIND is called `named.service` by `systemd`, while it is referred to as `dns` by `firewalld`.
 - If the service name is not present, the port numbers used by the service should be listed (e.g. when using a non-standard port, or a service not known by `firewalld`)
+
+If the network interface is not listed: `firewall-cmd --zone=public --add-interface=INTERFACENAME` 
+If the service is not listed: `firewall-cmd --zone=public --add-service=smtp`
+if the port is not listed: `firewall-cmd --zone=dmz --add-port=8080/tcp`
+**Gebruik --permanent als je zeker bent van de firewall settings**
+****
 
 # Application layer
 
